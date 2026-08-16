@@ -1,0 +1,66 @@
+# Render blueprint for both sites in this repo.
+#
+# Render reads only the render.yaml at the repo root, which is why the config
+# that used to live in website/render.yaml is folded in here as a second
+# service rather than kept beside the site it deploys.
+
+services:
+  # ── CRT test explorer (repo root) ────────────────────────────────────────
+  #
+  # No buildCommand: this page has no build step. Tailwind, Vue and the fonts
+  # come from CDNs at runtime, and the only generated files — content/runs.js
+  # and assets/img/fisheye-map.png — are committed rather than produced here.
+  #
+  # staticPublishPath is the repo root rather than a dist/ folder, because the
+  # BROWSER panel embeds website/index.html with a relative path. Serving from
+  # a subfolder would put that file out of reach of the iframe.
+  #
+  # tools/runner/server.js is NOT deployed and must not be. A static service
+  # runs no Node process, so the site falls back to replaying the runs recorded
+  # in content/runs.js — the intended behaviour for visitors. See
+  # docs/live-test-runner.md.
+  - type: web
+    name: roi-portfolio-sdet
+    runtime: static
+    staticPublishPath: .
+
+    headers:
+      # The displacement map is 363KB and changes only when the curvature is
+      # regenerated via tools/fisheye-map.js.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
+
+      # content/runs.js is rewritten by every recorded run, so it must not be
+      # cached past a deploy or the site replays a stale suite.
+      - path: /content/*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+
+      # SAMEORIGIN rather than DENY: the page frames website/index.html itself.
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+
+  # ── Portfolio site (website/) ────────────────────────────────────────────
+  #
+  # Moved verbatim from website/render.yaml, with rootDir added now that the
+  # blueprint lives a level up. staticPublishPath stays "." because it is
+  # resolved relative to rootDir.
+  #
+  # Note that website/CLAUDE.md records that Render does not reliably run this
+  # buildCommand, which is why website/dist/styles.css is committed. Keep
+  # committing it.
+  - type: web
+    name: roi-gamba-portfolio
+    runtime: static
+    rootDir: website
+    buildCommand: npm install && npm run build
+    staticPublishPath: .
+    domains:
+      - roigamba.dev
+      - www.roigamba.dev

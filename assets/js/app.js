@@ -136,7 +136,7 @@ createApp({
       /* CRT effects, read by the class bindings on the tube. All three are off
          and have no controls at the moment; the filter itself is now entirely
          declarative (baked map in index.html, applied by assets/css/crt.css). */
-      crt: { scanlines: true, flicker: true, fisheye: false },
+      crt: { scanlines: false, flicker: false, fisheye: true },
 
       ...content,
     };

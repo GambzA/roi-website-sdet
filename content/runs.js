@@ -10,44 +10,44 @@ window.TESTS = {
   ],
   "runs": {
     "home": {
-      "at": "2026-08-16T16:58:36.020Z",
+      "at": "2026-08-16T17:20:46.778Z",
       "code": 0,
-      "ms": 1603,
+      "ms": 1817,
       "lines": [
         {
           "text": "",
           "tone": "text-fg",
-          "ms": 399
+          "ms": 513
         },
         {
           "text": "Running 2 tests using 2 workers",
           "tone": "text-fg",
-          "ms": 399
+          "ms": 513
         },
         {
           "text": "",
           "tone": "text-fg",
-          "ms": 399
+          "ms": 513
         },
         {
-          "text": "  ✓  1 [chromium] › e2e/home.spec.ts:10:7 › Home Page Tests › Verify Page Loads (724ms)",
+          "text": "  ✓  1 [chromium] › e2e/home.spec.ts:10:7 › Home Page Tests › Verify Page Loads (796ms)",
           "tone": "text-mint",
-          "ms": 1519
+          "ms": 1769
         },
         {
-          "text": "  ✓  2 [chromium] › e2e/home.spec.ts:17:7 › Home Page Tests › Verify Page Loads 2 (777ms)",
+          "text": "  ✓  2 [chromium] › e2e/home.spec.ts:17:7 › Home Page Tests › Verify Page Loads 2 (797ms)",
           "tone": "text-mint",
-          "ms": 1564
+          "ms": 1771
         },
         {
           "text": "",
           "tone": "text-fg",
-          "ms": 1591
+          "ms": 1804
         },
         {
-          "text": "  2 passed (1.2s)",
+          "text": "  2 passed (1.3s)",
           "tone": "text-mint",
-          "ms": 1592
+          "ms": 1804
         }
       ],
       "steps": [
@@ -57,7 +57,7 @@ window.TESTS = {
           "category": "pw:api",
           "line": 11,
           "error": null,
-          "ms": 867
+          "ms": 1046
         },
         {
           "phase": "begin",
@@ -65,7 +65,7 @@ window.TESTS = {
           "category": "pw:api",
           "line": 18,
           "error": null,
-          "ms": 867
+          "ms": 1048
         },
         {
           "phase": "end",
@@ -73,7 +73,7 @@ window.TESTS = {
           "category": "pw:api",
           "line": 11,
           "error": null,
-          "ms": 1162
+          "ms": 1376
         },
         {
           "phase": "begin",
@@ -81,7 +81,7 @@ window.TESTS = {
           "category": "expect",
           "line": 13,
           "error": null,
-          "ms": 1166
+          "ms": 1379
         },
         {
           "phase": "end",
@@ -89,7 +89,7 @@ window.TESTS = {
           "category": "pw:api",
           "line": 18,
           "error": null,
-          "ms": 1250
+          "ms": 1464
         },
         {
           "phase": "begin",
@@ -97,7 +97,7 @@ window.TESTS = {
           "category": "expect",
           "line": 20,
           "error": null,
-          "ms": 1278
+          "ms": 1492
         },
         {
           "phase": "end",
@@ -105,7 +105,7 @@ window.TESTS = {
           "category": "expect",
           "line": 13,
           "error": null,
-          "ms": 1279
+          "ms": 1500
         },
         {
           "phase": "begin",
@@ -113,7 +113,7 @@ window.TESTS = {
           "category": "expect",
           "line": 14,
           "error": null,
-          "ms": 1281
+          "ms": 1504
         },
         {
           "phase": "end",
@@ -121,7 +121,7 @@ window.TESTS = {
           "category": "expect",
           "line": 14,
           "error": null,
-          "ms": 1293
+          "ms": 1517
         },
         {
           "phase": "end",
@@ -129,7 +129,7 @@ window.TESTS = {
           "category": "expect",
           "line": 20,
           "error": null,
-          "ms": 1320
+          "ms": 1526
         },
         {
           "phase": "begin",
@@ -137,7 +137,7 @@ window.TESTS = {
           "category": "expect",
           "line": 21,
           "error": null,
-          "ms": 1324
+          "ms": 1532
         },
         {
           "phase": "end",
@@ -145,7 +145,7 @@ window.TESTS = {
           "category": "expect",
           "line": 21,
           "error": null,
-          "ms": 1332
+          "ms": 1543
         }
       ],
       "spec": {

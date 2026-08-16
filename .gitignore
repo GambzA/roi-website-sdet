@@ -1,0 +1,19 @@
+# Dependencies — restored by `npm install` in tests/ and website/.
+# No leading slash, so this matches at any depth.
+node_modules/
+
+# Playwright output. tests/.gitignore repeats these; kept here so a clone is
+# covered even if a suite is ever added outside tests/.
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# macOS
+.DS_Store
+
+# NOT ignored, deliberately — these are generated but the deployed site needs
+# them, since a static host runs no runner to produce them:
+#   content/runs.js            recorded runs the page replays
+#   assets/img/fisheye-map.png baked displacement map for the barrel filter
+#   website/dist/styles.css    compiled Tailwind (see website/CLAUDE.md)

@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: roi-gamba-portfolio
-    runtime: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: .
-    domains:
-      - roigamba.dev
-      - www.roigamba.dev

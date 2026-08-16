@@ -11,7 +11,7 @@
   --color-2: rgba(91, 133, 139, 0.2); 
   --color-3: rgba(91, 133, 139, 0.5);
   --color-4: rgba(91, 133, 139, 0.7);
-  --size: 0.2px;
+  --size: 0.3px;
 
   font-size: calc(10 * var(--size));
   width: 1.5em;

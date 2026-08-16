@@ -10,7 +10,7 @@
    the barrel filter in crt.css samples nearest-neighbour and dashes hairlines
    as they curve. Size is overridable per instance with --btn-size. */
 .btn-circle {
-  --btn-size: 1.20rem;
+  --btn-size: 1.35rem;
 
   display: inline-flex; align-items: center; justify-content: center;
   width: var(--btn-size); height: var(--btn-size); flex: none;

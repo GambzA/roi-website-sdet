@@ -100,13 +100,9 @@
             <div class="panel-bd scroll">
 
               <!-- overview -->
-              <section v-if="active === 'overview'" class="flex flex-col gap-4">
-                <p class="text-[.95rem] leading-relaxed text-fg/85">
-                  Click a test to run. With the local runner up it spawns a real Playwright
-                  process — the browser panel shows the actual viewport as the test drives it,
-                  and the console streams the real output. Otherwise both replay the last
-                  recorded run.
-                  - Roi
+              <section v-if="active === 'overview'" class="grid h-[100%] grid-cols-1 content-center gap-4 text-center">
+                <p class="text-lg leading-relaxed text-fg/85">
+                  Click the <button class="btn-circle">▶</button> of <b>Home Page Test</b> on the left to run your first Automated Test!
                 </p>
               </section>
 
@@ -184,7 +180,7 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> 
 
               <div class="mt-auto border-t-[1.5px] border-line/20 pt-3">
                 <p class="mb-2 text-[.76rem] uppercase tracking-widest text-dim">links</p>
