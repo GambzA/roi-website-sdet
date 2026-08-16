@@ -23,6 +23,46 @@
 
 <body class="h-full bg-ink font-mono text-fg antialiased">
 
+  <!-- Boot screen. Covers the blank window that [v-cloak] leaves behind while
+     Vue, Tailwind and the fonts load. Styled from theme.css in plain CSS, not
+     utilities, because the Tailwind CDN may not have run when this paints. -->
+  <div id="boot">
+    <p class="boot-text">loading<span>.</span><span>.</span><span>.</span></p>
+    <div class="boot-bar" role="progressbar" aria-label="loading"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="boot-fill"></div>
+    </div>
+  </div>
+
+  <script>
+    /* Progress against real milestones rather than a timed fake — each step is
+       something that has genuinely finished. assets/js/app.js calls the last
+       one from mounted(). The timeout is a dead-man's switch: if Vue never
+       arrives, the screen must not trap the page behind it. */
+    (function () {
+      var boot = document.getElementById('boot');
+      var fill = boot.querySelector('.boot-fill');
+      var bar  = boot.querySelector('.boot-bar');
+      var at   = 0;
+
+      window.__boot = function (pct) {
+        if (!boot || pct <= at) return;
+        at = pct;
+        fill.style.width = at + '%';
+        bar.setAttribute('aria-valuenow', at);
+        if (at < 100) return;
+        boot.classList.add('done');
+        setTimeout(function () { boot.remove(); boot = null; }, 500);
+      };
+
+      window.__boot(12);
+      document.addEventListener('DOMContentLoaded', function () { window.__boot(40); });
+      if (document.fonts) document.fonts.ready.then(function () { window.__boot(70); });
+      window.addEventListener('load', function () { window.__boot(90); });
+      setTimeout(function () { window.__boot(100); }, 8000);
+    })();
+  </script>
+
   <!-- Barrel-distortion filter, applied via .fisheye-on in assets/css/crt.css.
      The displacement map is baked to assets/img/fisheye-map.png — nothing draws
      it at runtime. Run `node tools/fisheye-map.js` to regenerate it, and see

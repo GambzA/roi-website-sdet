@@ -11,6 +11,55 @@ body { -webkit-font-smoothing: antialiased; }
 /* Vue swaps this off on mount — keeps un-rendered mustaches from flashing. */
 [v-cloak] { display: none; }
 
+/* ── Boot screen ───────────────────────────────────────────────────────────
+   Plain CSS, no utilities: this has to paint correctly even if the Tailwind
+   CDN is slow, which is precisely the case it exists to cover. Fira Code may
+   not have arrived either, hence the monospace fallbacks. */
+#boot {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem;
+  background: #010b0d;
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+  transition: opacity .45s ease;
+}
+
+#boot.done { opacity: 0; pointer-events: none; }
+
+.boot-text {
+  margin: 0;
+  color: #49e9a6;
+  font-size: .95rem;
+  letter-spacing: .24em;
+}
+
+/* The dots pulse in sequence rather than the whole word blinking, so the
+   screen reads as working rather than as a warning. */
+.boot-text span { animation: bootDot 1.2s infinite; }
+.boot-text span:nth-of-type(2) { animation-delay: .18s; }
+.boot-text span:nth-of-type(3) { animation-delay: .36s; }
+@keyframes bootDot { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+
+.boot-bar {
+  width: min(260px, 54vw); height: 4px;
+  border-radius: 999px;
+  background: rgba(143, 199, 204, .18);
+  overflow: hidden;
+}
+
+.boot-fill {
+  width: 0; height: 100%;
+  border-radius: inherit;
+  background: #49e9a6;
+  box-shadow: 0 0 8px rgba(73, 233, 166, .6);
+  transition: width .35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-text span { animation: none; opacity: 1; }
+  #boot, .boot-fill { transition: none; }
+}
+
 /* ── Cursor ────────────────────────────────────────────────────────────────
    Drawn inline as SVG, so it costs no asset and no request and still works
    over file://. 26px sits a touch above the system arrow without turning into

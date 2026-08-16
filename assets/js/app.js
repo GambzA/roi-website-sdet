@@ -327,6 +327,9 @@ createApp({
   },
 
   async mounted() {
+    // The app is on screen — the last boot milestone. See the script in index.html.
+    if (window.__boot) window.__boot(100);
+
     this.tick();
     this._clock = setInterval(this.tick, 1000);
 
