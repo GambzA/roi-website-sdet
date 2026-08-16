@@ -136,7 +136,7 @@ createApp({
       /* CRT effects, read by the class bindings on the tube. All three are off
          and have no controls at the moment; the filter itself is now entirely
          declarative (baked map in index.html, applied by assets/css/crt.css). */
-      crt: { scanlines: false, flicker: false, fisheye: true },
+      crt: { scanlines: false, flicker: false, fisheye: false },
 
       ...content,
     };
@@ -185,6 +185,30 @@ createApp({
       // the re-render when the string is unchanged, making this ~1 paint/min.
       this.clock = new Date().toLocaleTimeString('en-GB',
         { hour12: false, hour: '2-digit', minute: '2-digit' });
+    },
+
+    /* The embedded site runs five endless animations — a marquee, two spins and
+       a scroll cue. Sitting inside the barrel filter, every frame of those
+       forces a full re-raster of the tube: measured 18fps against 60 with them
+       stopped, and it persists for as long as the panel is shown. Only the
+       infinite ones are paused; reveal and count-up animations finish by
+       themselves and cost nothing once done.
+
+       Same-origin because the runner serves both documents. Opened over
+       file:// the embed is an opaque origin and contentDocument throws, which
+       is why this is wrapped — there the animations simply keep running. */
+    calmEmbed(e) {
+      const stop = () => {
+        try {
+          const doc = e.target.contentDocument;
+          if (!doc) return;
+          doc.getAnimations()
+            .filter(a => a.effect && a.effect.getTiming().iterations === Infinity)
+            .forEach(a => a.pause());
+        } catch { /* cross-origin embed — nothing to reach into */ }
+      };
+      stop();
+      setTimeout(stop, 1500);   // catch any that start after load
     },
 
     /* Show a suite without running it: its source comes from the last recording,

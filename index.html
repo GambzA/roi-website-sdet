@@ -118,6 +118,7 @@
                      the embed shows the desktop layout the suite runs against
                      rather than the narrow one. `key` remounts it on each run. -->
                   <iframe :key="preview" src="website/index.html" title="page under test"
+                          @load="calmEmbed"
                           class="h-[200%] w-[200%] origin-top-left scale-50 border-0"></iframe>
                 </div>
                 <p class="text-[.78rem] text-dim">
@@ -237,6 +238,10 @@
      when the file is opened directly over file:// with no server. -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="content/portfolio.js"></script>
+  <!-- The committed snapshot first, then the local recording if one exists —
+     runs.js is gitignored, so on a static host only the seed is present and
+     the second tag simply 404s. Refresh the seed with tools/publish-runs.js. -->
+  <script src="content/runs.seed.js"></script>
   <script src="content/runs.js"></script>
   <script src="assets/js/app.js"></script>
 

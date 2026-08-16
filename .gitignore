@@ -12,6 +12,11 @@ playwright/.cache/
 # macOS
 .DS_Store
 
+# Rewritten by every local run, so it would churn the diff constantly. The
+# committed snapshot beside it — content/runs.seed.js — is what the deployed
+# site serves; refresh it deliberately with `node tools/publish-runs.js`.
+content/runs.js
+
 # NOT ignored, deliberately — these are generated but the deployed site needs
 # them, since a static host runs no runner to produce them:
 #   content/runs.js            recorded runs the page replays
