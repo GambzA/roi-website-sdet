@@ -1,0 +1,379 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system ported from the advanced-modern POC.
+   All motion is driven by two things only: CSS transitions keyed off a `.is-in`
+   class (set by IntersectionObserver in motion.js), and CSS custom properties
+   written by a rAF scroll loop for parallax. */
+
+@layer base {
+  :root {
+    /* Consumed by inline SVGs, which can't take Tailwind classes. */
+    --color-accent: #1c4f9c;
+    --color-accent-300: #b3caee;
+    --color-ink: #071a35;
+    /* Written by motion.js; 0 at page top, grows as the page scrolls. */
+    --scroll: 0;
+  }
+  html {
+    @apply scroll-smooth;
+    /* Parallax layers move on the compositor; keep the root out of the way. */
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-bg text-text font-body text-[15px] leading-[1.6] antialiased;
+    /* Parallax translates children beyond their box; never let that cause
+       a horizontal scrollbar. */
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-extrabold leading-[1.08] tracking-[-0.02em];
+  }
+  a {
+    @apply text-accent-700 no-underline;
+    text-underline-offset: 3px;
+  }
+  a:hover { @apply text-accent; }
+  figure { @apply m-0; }
+  img { @apply block max-w-full; }
+  :focus { outline: none; }
+  :focus-visible {
+    @apply outline outline-2 outline-accent outline-offset-2;
+  }
+  ::selection { @apply bg-accent/25; }
+}
+
+@layer components {
+  /* — buttons — corner-fill hover, with radius + lift. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer no-underline
+      font-heading font-semibold text-xs tracking-[0.1em] uppercase leading-tight
+      bg-transparent border px-6 py-3 rounded
+      relative overflow-hidden z-[1];
+    transition: color 0.5s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s;
+  }
+  .btn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--btn-fill, transparent);
+    top: 100%;
+    left: 100%;
+    width: 220%;
+    height: 500%;
+    border-radius: 50%;
+    transition: all 0.7s;
+  }
+  .btn:hover::before { top: -50%; left: -50%; }
+  .btn:hover { @apply -translate-y-0.5; }
+  .btn:disabled { @apply opacity-45 cursor-not-allowed; }
+
+  .btn-primary {
+    --btn-fill: theme('colors.accent.700');
+    @apply bg-accent text-white border-accent shadow-glow;
+  }
+  .btn-primary:hover { @apply text-white; }
+
+  .btn-secondary {
+    --btn-fill: theme('colors.accent.DEFAULT');
+    @apply text-accent-700 border-divider;
+  }
+  .btn-secondary:hover { @apply text-white; }
+
+  .btn-on-ink {
+    --btn-fill: #ffffff;
+    @apply text-white border-white/45;
+  }
+  .btn-on-ink:hover { @apply text-accent-800; }
+
+  /* — section furniture — */
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-accent;
+  }
+  .kicker::before {
+    content: "";
+    @apply inline-block w-6 h-px bg-accent;
+  }
+  .kicker-on-ink { @apply text-accent-300; }
+  .kicker-on-ink::before { @apply bg-accent-300; }
+
+  .section-title {
+    @apply font-heading text-[clamp(30px,4.2vw,52px)] m-0;
+  }
+
+  /* — cards — */
+  .card {
+    @apply relative flex flex-col rounded-card bg-white border border-divider p-7 overflow-hidden;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s, border-color 0.5s;
+  }
+  .card:hover { @apply -translate-y-1.5 shadow-lg border-accent-300; }
+  /* Sheen that sweeps across on hover. */
+  .card::after {
+    content: "";
+    @apply absolute inset-0 pointer-events-none opacity-0;
+    background: linear-gradient(115deg, transparent 35%, rgba(28,79,156,0.10) 50%, transparent 65%);
+    transform: translateX(-100%);
+    transition: opacity 0.5s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card:hover::after { @apply opacity-100; transform: translateX(100%); }
+
+  /* Same card on the navy bands. */
+  .card-on-ink {
+    @apply bg-white/[0.04] border-white/15;
+  }
+  .card-on-ink:hover { @apply border-accent-400/60 bg-white/[0.07]; }
+
+  .card-num {
+    @apply font-mono font-medium text-[13px] tracking-[0.1em] text-accent-400;
+  }
+  .card-title { @apply font-heading text-xl mt-3 mb-2; }
+  .card-body { @apply m-0 text-[14.5px] text-muted flex-1; }
+
+  /* — tags — */
+  .tag {
+    @apply inline-flex items-center rounded-full text-[13px] tracking-[0.02em] px-3.5 py-1.5;
+  }
+  .tag-accent { @apply bg-accent-100 text-accent-800; }
+  .tag-outline { @apply border border-accent/40 text-accent; }
+  .tag-on-ink { @apply border border-white/25 text-white/80; }
+  /* The skills worth pulling forward out of a long list. */
+  .tag-on-ink-accent { @apply border border-accent-400/70 bg-accent-400/15 text-accent-300; }
+
+  /* — segmented tab control (Projects) — */
+  .tab {
+    @apply relative inline-flex items-center justify-center cursor-pointer
+      font-heading font-semibold text-[12px] tracking-[0.1em] uppercase
+      px-5 py-3 rounded border border-transparent text-muted bg-transparent;
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+  }
+  .tab:hover { @apply text-accent; }
+  .tab[aria-selected='true'] {
+    @apply text-white bg-accent border-accent shadow-glow;
+  }
+
+  /* — tool badge (agentic tools row) — */
+  .tool-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-divider bg-white
+      px-3.5 py-1.5 text-[12px] font-medium text-muted;
+  }
+  .tool-badge img { @apply w-4 h-4 object-contain; }
+
+  /* — investor pill on a project title — */
+  .investor-tag {
+    @apply inline-flex items-center gap-1 align-middle rounded-full
+      bg-accent-100 text-accent-800 px-2.5 py-0.5
+      text-[10px] font-semibold tracking-[0.08em] uppercase;
+  }
+  .investor-tag svg { @apply w-3 h-3; }
+
+  /* — navigation — */
+  .nav-link {
+    @apply relative text-inherit no-underline text-[13px] tracking-[0.1em] uppercase
+      flex items-center h-full transition-colors duration-200;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 right-0 bottom-0 h-0.5 bg-accent origin-left scale-x-0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current='true']::after { @apply scale-x-100; }
+  .nav-link:hover, .nav-link[aria-current='true'] { @apply text-accent; }
+
+  /* — full-screen overlay menu —
+     Large-type list with generous rhythm. */
+  .menu-link {
+    @apply flex items-center justify-between gap-4 w-full py-3
+      font-heading font-semibold text-[27px] leading-tight tracking-[-0.02em]
+      text-text no-underline transition-colors duration-200;
+  }
+  .menu-link:hover { @apply text-accent; }
+
+  .menu-link-sm {
+    @apply flex items-center justify-between gap-4 w-full py-2.5
+      text-[17px] text-muted no-underline transition-colors duration-200;
+  }
+  .menu-link-sm:hover { @apply text-accent; }
+}
+
+@layer utilities {
+  /* — background patterns —
+     Blueprint grid + dot field, drawn with gradients so there are no image
+     requests. Used behind the hero and the ink bands. */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgba(28,79,156,0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28,79,156,0.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .bg-blueprint-fine {
+    background-image:
+      linear-gradient(to right, rgba(28,79,156,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28,79,156,0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgba(28,79,156,0.16) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  .bg-blueprint-ink {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .bg-dots-ink {
+    background-image: radial-gradient(rgba(255,255,255,0.14) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  /* Fades a pattern out toward the edges so it never hard-stops at a seam. */
+  .mask-fade {
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 40%, transparent 100%);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .animate-marquee:hover { animation-play-state: paused; }
+
+  /* Promotes parallax/reveal layers to their own compositor layer. */
+  .will-animate { will-change: transform, opacity; }
+}
+
+/* ————————————————————————————————————————————————————————————
+   REVEAL SYSTEM
+   Elements tagged [data-reveal] start displaced + transparent and settle
+   when motion.js adds .is-in. Direction is chosen by the attribute value,
+   stagger by --d (seconds). Everything shares one easing so the page reads
+   as a single motion system rather than a pile of separate effects.
+   ———————————————————————————————————————————————————————————— */
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s),
+    clip-path 1s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+}
+[data-reveal='up']     { transform: translate3d(0, 42px, 0); }
+[data-reveal='down']   { transform: translate3d(0, -42px, 0); }
+/* Horizontal variants push content past the viewport edge while they're
+   mid-flight. body's overflow-x:hidden absorbs that, but only use these on
+   elements that sit well inside the gutter — prefer up/scale at full-bleed. */
+[data-reveal='left']   { transform: translate3d(-48px, 0, 0); }
+[data-reveal='right']  { transform: translate3d(48px, 0, 0); }
+[data-reveal='scale']  { transform: scale(0.92); }
+[data-reveal='blur']   { transform: translate3d(0, 24px, 0); filter: blur(14px); }
+/* Wipe: content is fully laid out, just clipped — no layout shift. */
+[data-reveal='wipe']   { clip-path: inset(0 100% 0 0); opacity: 1; }
+[data-reveal='wipe-up']{ clip-path: inset(100% 0 0 0); opacity: 1; }
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+/* Only the wipe variants animate clip-path. Applying it to every revealed
+   element would clip anything that legitimately overflows the box — drop
+   shadows, hover lifts, the card sheen, absolutely-positioned callouts. */
+[data-reveal='wipe'].is-in,
+[data-reveal='wipe-up'].is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Per-word/line headline reveal. motion.js splits the text into spans. */
+.split-line { display: block; overflow: hidden; }
+.split-line > span {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+}
+.is-in .split-line > span,
+.split-line.is-in > span { transform: none; }
+
+/* ————————————————————————————————————————————————————————————
+   PARALLAX
+   motion.js writes --p (roughly -1 → 1 as the element crosses the viewport)
+   on each [data-parallax]; the element decides how far that moves it via
+   --p-range. Transform only, so it stays on the compositor.
+   ———————————————————————————————————————————————————————————— */
+[data-parallax] {
+  transform: translate3d(0, calc(var(--p, 0) * var(--p-range, 60px)), 0);
+  will-change: transform;
+}
+[data-parallax='x'] {
+  transform: translate3d(calc(var(--p, 0) * var(--p-range, 60px)), 0, 0);
+}
+[data-parallax='scale'] {
+  transform: scale(calc(1 + (var(--p, 0) * var(--p-scale, 0.12))));
+}
+[data-parallax='rotate'] {
+  transform: rotate(calc(var(--p, 0) * var(--p-rot, 45deg)));
+}
+
+/* ————————————————————————————————————————————————————————————
+   OVERLAY MENU OPEN ANIMATION
+   The whole panel fades in, then its rows cascade up. No JS hook needed:
+   nav.js only toggles `hidden`, and a display:none -> block change restarts
+   CSS animations, so :not(.hidden) is enough to re-fire on every open.
+   ———————————————————————————————————————————————————————————— */
+@keyframes menu-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes menu-item {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+#mobile-menu:not(.hidden) {
+  animation: menu-fade 260ms ease both;
+}
+#mobile-menu:not(.hidden) [data-menu-item] {
+  animation: menu-item 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(90ms + (var(--i, 0) * 55ms));
+}
+
+/* Counter digits reserve their final width so the layout doesn't jitter
+   while the number animates up. */
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* Sticky "pinned" scroll sections: the media column holds while the copy
+   column scrolls past it. Purely CSS — no scroll-jacking.
+   Only pin from lg up, where the two-column grid actually exists. Below that
+   the layout collapses to a single column, so pinning would leave the heading
+   stuck under the cards that scroll past it. */
+@media (min-width: 1024px) {
+  .pin-col { position: sticky; top: 6rem; }
+}
+
+/* The copy-email button swaps its icon once the clipboard write resolves. */
+#copy-email .icon-check { display: none; }
+#copy-email.copied .icon-default { display: none; }
+#copy-email.copied .icon-check { display: block; }
+
+/* ————————————————————————————————————————————————————————————
+   REDUCED MOTION
+   Kill transforms/animations outright and show everything in its final
+   state. Nothing here depends on JS having run.
+   ———————————————————————————————————————————————————————————— */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+  .split-line > span { transform: none !important; }
+  [data-parallax] { transform: none !important; }
+  .pin-col { position: static; }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "roi-portfolio-sdet",
+  "private": true,
+  "scripts": {
+    "dev": "node tools/runner/server.js"
+  }
+}

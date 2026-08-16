@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CRT layer — the tube, its glass, and the barrel distortion.
+   Each effect is a class the tube markup carries; `crt` in assets/js/app.js
+   decides which. They are all off at present and have no controls — add a
+   class by hand, or wire switches back up, to turn one on.
+
+   PERFORMANCE NOTE, read before adding anything that animates:
+   any paint inside the filtered wrapper re-runs the whole filter chain across
+   the entire surface. An always-on animation in there therefore costs a full
+   barrel re-raster per frame and reads as flicker. That is why the caret is
+   held still while the filter is live, and why the clock in app.js ticks at
+   minute resolution rather than seconds.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── The tube ─────────────────────────────────────────────────────────────── */
+.tube {
+  border-radius: 26px / 34px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, #063036 0%, #052529 45%, #03181b 100%);
+  box-shadow:
+    inset 0 0 6px rgba(143,199,204,.22),
+    inset 0 0 90px rgba(3,20,23,.9),
+    0 0 0 1px rgba(143,199,204,.20),
+    0 0 60px rgba(22,163,182,.10);
+}
+
+/* ── Barrel distortion ────────────────────────────────────────────────────
+   The filter itself is the <svg><filter id="fisheye"> in index.html, and its
+   displacement map is a baked PNG — no JavaScript is involved in the effect.
+   Gated to desktop: a filtered element that scrolls repaints the whole
+   raster, and below this breakpoint the layout is a single scrolling column. */
+@media (min-width: 1024px) {
+  .fisheye-on { filter: url(#fisheye); }
+
+  /* Steady caret while the filter is live — see the performance note above.
+     Below this breakpoint there is no filter, so it blinks as normal. */
+  .fisheye-on .caret::after { animation: none; }
+}
+
+/* ── Scanlines and the drifting brightness sweep ──────────────────────────── */
+.scanlines::before {
+  content: ''; position: absolute; inset: 0; z-index: 30; pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(1, 11, 13, .34) 0 1px,
+    rgba(1, 11, 13, 0)   1px 3px
+  );
+}
+
+.scanlines::after {
+  content: ''; position: absolute; inset: -50% 0; z-index: 31; pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%, rgba(143,199,204,.045) 48%, rgba(143,199,204,.07) 50%,
+    rgba(143,199,204,.045) 52%, transparent 100%
+  );
+  animation: sweep 7s linear infinite;
+}
+@keyframes sweep { from { transform: translateY(-40%); } to { transform: translateY(60%); } }
+
+/* ── Curved glass: top glare, corner bounce, vignette ─────────────────────── */
+.glass {
+  position: absolute; inset: 0; z-index: 32; pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(80% 55% at 50% -10%, rgba(178,202,205,.10) 0%, transparent 60%),
+    radial-gradient(60% 40% at 15% 105%, rgba(22,163,182,.07) 0%, transparent 70%);
+  box-shadow: inset 0 0 120px 30px rgba(1,11,13,.75);
+  mix-blend-mode: screen;
+}
+
+/* ── Irregular tube flicker ───────────────────────────────────────────────── */
+.flicker { animation: flicker 4.2s infinite steps(1, end); }
+@keyframes flicker {
+  0%, 96%   { opacity: 1; }
+  96.5%     { opacity: .93; }
+  97%       { opacity: 1; }
+  97.6%     { opacity: .96; }
+  98.2%     { opacity: 1; }
+}
+
+/* ── Terminal caret ───────────────────────────────────────────────────────── */
+.caret::after {
+  content: '▍'; color: #49e9a6; animation: blink 1.05s steps(1, end) infinite;
+}
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker, .scanlines::after, .caret::after { animation: none !important; }
+}

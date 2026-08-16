@@ -1,0 +1,19 @@
+{
+  "name": "roi-portfolio-sdet-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright end-to-end tests for the roi-portfolio-sdet page",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "test:home": "playwright test -g \"home page loads\" --headed",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  }
+}

@@ -1,0 +1,115 @@
+/* Holds the same footprint as .btn-circle (--btn-size in button.css) so
+   swapping the run button for the spinner doesn't shift the row. The .loader
+   ring itself is drawn with box-shadow and takes almost no layout space. */
+.loader-slot {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.20rem; height: 1.20rem; flex: none;
+}
+
+.loader {
+  --color-1: #7ba7ae;
+  --color-2: rgba(91, 133, 139, 0.2); 
+  --color-3: rgba(91, 133, 139, 0.5);
+  --color-4: rgba(91, 133, 139, 0.7);
+  --size: 0.2px;
+
+  font-size: calc(10 * var(--size));
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.1s infinite ease;
+  transform: translateZ(0);
+}
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-1),
+      1.8em -1.8em 0 0em var(--color-2),
+      2.5em 0em 0 0em var(--color-2),
+      1.75em 1.75em 0 0em var(--color-2),
+      0em 2.5em 0 0em var(--color-2),
+      -1.8em 1.8em 0 0em var(--color-2),
+      -2.6em 0em 0 0em var(--color-3),
+      -1.8em -1.8em 0 0em var(--color-4);
+  }
+  12.5% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-4),
+      1.8em -1.8em 0 0em var(--color-1),
+      2.5em 0em 0 0em var(--color-2),
+      1.75em 1.75em 0 0em var(--color-2),
+      0em 2.5em 0 0em var(--color-2),
+      -1.8em 1.8em 0 0em var(--color-2),
+      -2.6em 0em 0 0em var(--color-2),
+      -1.8em -1.8em 0 0em var(--color-3);
+  }
+  25% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-3),
+      1.8em -1.8em 0 0em var(--color-4),
+      2.5em 0em 0 0em var(--color-1),
+      1.75em 1.75em 0 0em var(--color-2),
+      0em 2.5em 0 0em var(--color-2),
+      -1.8em 1.8em 0 0em var(--color-2),
+      -2.6em 0em 0 0em var(--color-2),
+      -1.8em -1.8em 0 0em var(--color-2);
+  }
+  37.5% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-2),
+      1.8em -1.8em 0 0em var(--color-3),
+      2.5em 0em 0 0em var(--color-4),
+      1.75em 1.75em 0 0em var(--color-1),
+      0em 2.5em 0 0em var(--color-2),
+      -1.8em 1.8em 0 0em var(--color-2),
+      -2.6em 0em 0 0em var(--color-2),
+      -1.8em -1.8em 0 0em var(--color-2);
+  }
+  50% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-2),
+      1.8em -1.8em 0 0em var(--color-2),
+      2.5em 0em 0 0em var(--color-3),
+      1.75em 1.75em 0 0em var(--color-4),
+      0em 2.5em 0 0em var(--color-1),
+      -1.8em 1.8em 0 0em var(--color-2),
+      -2.6em 0em 0 0em var(--color-2),
+      -1.8em -1.8em 0 0em var(--color-2);
+  }
+  62.5% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-2),
+      1.8em -1.8em 0 0em var(--color-2),
+      2.5em 0em 0 0em var(--color-2),
+      1.75em 1.75em 0 0em var(--color-3),
+      0em 2.5em 0 0em var(--color-4),
+      -1.8em 1.8em 0 0em var(--color-1),
+      -2.6em 0em 0 0em var(--color-2),
+      -1.8em -1.8em 0 0em var(--color-2);
+  }
+  75% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-2),
+      1.8em -1.8em 0 0em var(--color-2),
+      2.5em 0em 0 0em var(--color-2),
+      1.75em 1.75em 0 0em var(--color-2),
+      0em 2.5em 0 0em var(--color-3),
+      -1.8em 1.8em 0 0em var(--color-4),
+      -2.6em 0em 0 0em var(--color-1),
+      -1.8em -1.8em 0 0em var(--color-2);
+  }
+  87.5% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--color-2),
+      1.8em -1.8em 0 0em var(--color-2),
+      2.5em 0em 0 0em var(--color-2),
+      1.75em 1.75em 0 0em var(--color-2),
+      0em 2.5em 0 0em var(--color-2),
+      -1.8em 1.8em 0 0em var(--color-3),
+      -2.6em 0em 0 0em var(--color-4),
+      -1.8em -1.8em 0 0em var(--color-1);
+  }
+}

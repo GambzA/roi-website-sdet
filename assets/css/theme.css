@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Theme — page surface and the panel primitives the layout is built from.
+   Colour *tokens* live in assets/js/tailwind.config.js so they are usable as
+   utility classes; this file is only the handful of components that would be
+   unreadable as a pile of utilities.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+html, body { background: #010b0d; }
+body { -webkit-font-smoothing: antialiased; }
+
+/* Vue swaps this off on mount — keeps un-rendered mustaches from flashing. */
+[v-cloak] { display: none; }
+
+/* ── Cursor ────────────────────────────────────────────────────────────────
+   Drawn inline as SVG, so it costs no asset and no request and still works
+   over file://. 26px sits a touch above the system arrow without turning into
+   a novelty — Chromium ignores cursor images past 128px, so this is well
+   inside the safe range. Interactive elements invert the same shape rather
+   than switching to a different one: ink on mint instead of mint on ink.
+
+   Colours are the Noctis tokens from assets/js/tailwind.config.js — ink
+   #03171a and mint #49e9a6 — percent-encoded, since a bare `#` would end the
+   data URI. Every rule keeps a keyword fallback for when the image is refused. */
+:root {
+  --cursor-arrow:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M4 2.5 L4 20.4 L9.1 15.5 L12.5 22.6 L16.1 20.9 L12.8 14.1 L19.4 13.7 Z' fill='%2303171a' stroke='%2349e9a6' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E") 4 2;
+
+  --cursor-point:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M4 2.5 L4 20.4 L9.1 15.5 L12.5 22.6 L16.1 20.9 L12.8 14.1 L19.4 13.7 Z' fill='%2349e9a6' stroke='%2303171a' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E") 4 2;
+
+  --cursor-text:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M13 4.5 L13 21.5 M9.5 4.5 L16.5 4.5 M9.5 21.5 L16.5 21.5' stroke='%2349e9a6' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 13 13;
+}
+
+/* The interactive rules are prefixed with `body` purely for specificity:
+   Tailwind's preflight sets `cursor: pointer` on `button` at the same weight
+   as a bare element selector, and the CDN injects its stylesheet after this
+   one, so an unprefixed `button` rule loses on order. */
+body                         { cursor: var(--cursor-arrow), auto; }
+body a, body button,
+body label, body summary,
+body [role='button']         { cursor: var(--cursor-point), pointer; }
+body button:disabled         { cursor: var(--cursor-arrow), not-allowed; }
+body input, body textarea,
+.scroll p                    { cursor: var(--cursor-text), text; }
+
+/* ── Panels ────────────────────────────────────────────────────────────────
+   Borders are 1.5px rather than hairlines on purpose. The barrel filter in
+   crt.css samples nearest-neighbour, so a 1px line snaps between pixel rows
+   as it curves and breaks into dashes; 1.5px survives a row-snap intact. */
+.panel {
+  position: relative;
+  display: flex; flex-direction: column; min-height: 0;
+  border: 1.5px solid rgba(143,199,204,.46);
+  border-radius: 20px;
+  background: rgba(4,29,32,.55);
+  box-shadow: inset 0 0 40px rgba(3,24,27,.6), 0 0 0 1px rgba(3,24,27,.6);
+}
+
+.panel-hd {
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  padding: .45rem .75rem;
+  border-bottom: 1.5px solid rgba(143,199,204,.3);
+  font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+  color: #7ba7ae; flex: none;   /* `dim` in tailwind.config.js */
+}
+
+/* Panels scroll internally so the desktop grid never grows past the viewport. */
+.panel-bd { flex: 1 1 auto; min-height: 0; overflow: auto; padding: .85rem; }
+
+/* ── Scrollbars ───────────────────────────────────────────────────────────── */
+.scroll::-webkit-scrollbar { width: 7px; height: 7px; }
+.scroll::-webkit-scrollbar-track { background: transparent; }
+.scroll::-webkit-scrollbar-thumb { background: rgba(143,199,204,.24); border-radius: 99px; }
+.scroll::-webkit-scrollbar-thumb:hover { background: rgba(143,199,204,.4); }

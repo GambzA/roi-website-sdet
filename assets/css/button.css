@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Buttons — the round-bordered control.
+   Colours are the Noctis tokens from assets/js/tailwind.config.js, written out
+   as literals here because plain CSS cannot read Tailwind's theme.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Circle button ─────────────────────────────────────────────────────────
+   A fixed square box with a 50% radius, so the border stays a true circle
+   whatever the label is. Border is 1.5px for the same reason the panels are:
+   the barrel filter in crt.css samples nearest-neighbour and dashes hairlines
+   as they curve. Size is overridable per instance with --btn-size. */
+.btn-circle {
+  --btn-size: 1.20rem;
+
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--btn-size); height: var(--btn-size); flex: none;
+
+  border: 1.5px solid rgba(73,233,166,.55);
+  border-radius: 50%;
+  background: rgba(73,233,166,.08);
+
+  color: #49e9a6;
+  font: inherit; font-size: .5rem; line-height: 1;
+  cursor: var(--cursor-point), pointer;   /* token defined in theme.css */
+  transition: background-color .18s, border-color .18s, box-shadow .18s, color .18s;
+}
+
+.btn-circle:active:not(:disabled) { background: rgba(73,233,166,.28); }
+
+/* Keyboard focus only — the ring sits outside the border so it reads as a
+   second circle rather than thickening the first. */
+.btn-circle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(3,23,26,1), 0 0 0 3.5px rgba(73,233,166,.6);
+}
+
+.btn-circle:disabled { opacity: .4; cursor: var(--cursor-arrow), not-allowed; }
+
+/* ── Variants ──────────────────────────────────────────────────────────────
+   Outline only, and a neutral tone for secondary actions. */
+.btn-circle--ghost { background: transparent; }
+
+.btn-circle--dim {
+  border-color: rgba(143,199,204,.35);
+  background: rgba(143,199,204,.06);
+  color: #b2cacd;
+}
+.btn-circle--dim:hover:not(:disabled) {
+  border-color: rgba(143,199,204,.7);
+  background: rgba(143,199,204,.14);
+  box-shadow: 0 0 14px rgba(143,199,204,.18);
+}
+.btn-circle--dim:focus-visible {
+  box-shadow: 0 0 0 2px rgba(3,23,26,1), 0 0 0 3.5px rgba(143,199,204,.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-circle { transition: none; }
+}
