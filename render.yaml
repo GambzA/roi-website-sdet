@@ -48,18 +48,15 @@ services:
 
   # ── Portfolio site (website/) ────────────────────────────────────────────
   #
-  # Moved verbatim from website/render.yaml, with rootDir added now that the
-  # blueprint lives a level up. staticPublishPath stays "." because it is
-  # resolved relative to rootDir.
+  # staticPublishPath stays "." because it resolves relative to rootDir.
   #
-  # Note that website/CLAUDE.md records that Render does not reliably run this
-  # buildCommand, which is why website/dist/styles.css is committed. Keep
-  # committing it.
+  # No buildCommand: the site was rewritten as plain HTML and CSS
+  # (assets/css/style.css, authored directly), so there is no package.json and
+  # nothing to compile. The previous Tailwind build step would fail here.
   - type: web
     name: roi-gamba-portfolio
     runtime: static
     rootDir: website
-    buildCommand: npm install && npm run build
     staticPublishPath: .
     domains:
       - roigamba.dev

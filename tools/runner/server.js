@@ -56,11 +56,18 @@ function discoverSuites() {
     const titles = [...src.matchAll(/^\s*test(?:\.only|\.skip|\.fixme)?\s*\(\s*(['"`])(.+?)\1/gm)]
       .map(m => m[2]);
 
+    /* The page the spec drives, so the BROWSER panel can show what this suite
+       actually exercises rather than a hardcoded page. baseURL is the repo root
+       (tests/playwright.config.ts), and the site is served from the repo root
+       too, so the goto target doubles as the embed path once './' is dropped. */
+    const goto = src.match(/\.goto\(\s*(['"`])([^'"`]+)\1/);
+
     return {
       key:   name.replace(SPEC_RE, ''),
       file:  `e2e/${name}`,
       label: (group && group[2]) || titles[0] || `e2e/${name}`,
       tests: titles.length,
+      url:   goto ? goto[2].replace(/^\.\//, '') : null,
       lines: src.split('\n'),
     };
   });
@@ -68,7 +75,7 @@ function discoverSuites() {
 
 // The source is only wanted by the run stream; the listing stays light.
 const listSuites = () =>
-  discoverSuites().map(({ key, file, label, tests }) => ({ key, file, label, tests }));
+  discoverSuites().map(({ key, file, label, tests, url }) => ({ key, file, label, tests, url }));
 
 /* Noctis palette classes, same ones defined in assets/js/tailwind.config.js. */
 function toneFor(text) {

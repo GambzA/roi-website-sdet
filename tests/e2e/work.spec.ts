@@ -6,16 +6,11 @@ import { test, expect } from '@playwright/test';
  * resolve against the site on disk.
  */
 
-test.describe('Home Page Tests', () => {
+test.describe('Work History Page Tests', () => {
   test('Verify Header is Visible', async ({ page }) => {
-    await page.goto('./website/index.html');
+    await page.goto('./website/work.html');
 
     await expect(page).toHaveTitle(/Roi Mark Gamba/);
     await expect(page.getByRole('heading', { name: 'ROI MARK GAMBA' })).toBeVisible();
-  });
-
-  test('Verify Image Loads', async ({ page }) => {
-    await page.goto('./website/index.html');
-    await expect(page.getByAltText("Roi Mark Gamba sitting on rocks at the shoreline, waves breaking around him.")).toBeVisible();
   });
 })

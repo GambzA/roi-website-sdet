@@ -157,12 +157,12 @@
                   <!-- Rendered at twice the panel width and scaled back down, so
                      the embed shows the desktop layout the suite runs against
                      rather than the narrow one. `key` remounts it on each run. -->
-                  <iframe :key="preview" src="website/index.html" title="page under test"
+                  <iframe :key="embedUrl + '#' + preview" :src="embedUrl" title="page under test"
                           @load="calmEmbed"
                           class="h-[200%] w-[200%] origin-top-left scale-50 border-0"></iframe>
                 </div>
                 <p class="text-[.78rem] text-dim">
-                  website/index.html — reloads on each run
+                  {{ embedUrl }} — reloads on each run
                 </p>
               </section>
 
@@ -206,7 +206,7 @@
 
               <!-- Steps in execution order, each stamped when it resolves. -->
               <div v-if="steps.length">
-                <p class="mb-2 text-[.76rem] uppercase tracking-widest text-dim">steps</p>
+                <p class="mb-2 text-[.76rem] uppercase tracking-widest text-dim">Trace Viewer</p>
                 <div class="flex flex-col gap-1.5">
                   <div v-for="(s, i) in steps" :key="i" class="flex items-start justify-between gap-2 text-[.8rem]">
                     <span :class="s.status === 'failed' ? 'text-pink'

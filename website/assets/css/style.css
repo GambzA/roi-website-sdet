@@ -1,0 +1,366 @@
+/* ==========================================================================
+   Roi Mark Gamba — Portfolio (content site)
+   Swiss / International Typographic layout on a dark editor palette.
+   Navigation is owned by the parent test-runner app; this site is the content
+   those tests navigate. No dependencies, no build step, no JavaScript.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- 1. Tokens */
+
+:root {
+  /* Aliases, not definitions. Every value now lives once in src/input.css
+     under @theme, so the Tailwind utilities and the component rules below
+     cannot drift apart. This file is consumed through that build — the pages
+     link dist/styles.css, never this file directly. */
+
+  /* Surfaces — deepest to raised */
+  --ink: var(--color-ink);        /* outside the tube */
+  --panel: var(--color-panel);    /* editor.background — the reading surface */
+  --bar: var(--color-bar);        /* sideBar.background — masthead & colophon */
+  --raised: var(--color-raised);  /* focusBorder / raised surfaces */
+
+  /* Text */
+  --fg: var(--color-fg);          /* editor.foreground */
+  --dim: var(--color-dim);        /* comments */
+  --line: var(--color-line);      /* panel border, lightened for visible frames */
+
+  /* Syntax accents */
+  --mint: var(--color-mint);      /* strings   → affirmations */
+  --pink: var(--color-pink);      /* keywords  → section markers, arrows */
+  --cyan: var(--color-cyan);      /* functions → organisations, links */
+  --amber: var(--color-amber);    /* variables → identifiers */
+  --violet: var(--color-violet);  /* numbers   → indices */
+  --rust: var(--color-rust);      /* types     → stack tags */
+
+  /* Derived hairlines — quieter than a visible frame */
+  --rule: rgba(143, 199, 204, 0.18);
+  --rule: color-mix(in srgb, var(--line) 18%, transparent);
+  --rule-strong: rgba(143, 199, 204, 0.4);
+  --rule-strong: color-mix(in srgb, var(--line) 40%, transparent);
+
+  /* Rhythm */
+  --pad: var(--spacing-pad);
+  --gap: var(--spacing-gap);
+  --band: var(--spacing-band);
+
+  /* Type */
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+
+  /* The fluid scale, including the >=1440px ramp, is defined once in
+     src/input.css. These aliases exist so the component rules below keep
+     reading the names they always used. */
+  --t-micro: var(--text-micro);
+  --t-small: var(--text-small);
+  --t-body: var(--text-body);
+  --t-lede: var(--text-lede);
+  --t-h3: var(--text-h3);
+  --t-display: var(--text-display);
+
+  color-scheme: dark;
+}
+
+/* ----------------------------------------------------------- 2. Foundation */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; background: var(--ink); }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--raised); color: var(--line); }
+
+:focus-visible {
+  outline: 2px solid var(--raised);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--raised);
+  color: var(--line);
+  padding: 0.75rem 1rem;
+  font: 500 var(--t-micro)/1 var(--mono);
+  letter-spacing: 0.12em;
+  z-index: 50;
+}
+.skip:focus { left: 0; }
+
+/* ---------------------------------------------------------- 3. Type helpers */
+
+.mono {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.display {
+  font-size: var(--t-display);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--line);
+  text-wrap: balance;
+}
+
+/* Long-sentence headline for interior pages */
+.display--sm {
+  font-size: clamp(1.75rem, 0.85rem + 3.9vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+}
+
+.lede {
+  font-size: var(--t-lede);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.body-lg { font-size: var(--t-body); line-height: 1.5; text-wrap: pretty; }
+.muted { color: var(--dim); }
+.accent { color: var(--pink); }
+
+/* --------------------------------------------------------------- 4. Layout */
+
+main { background: var(--panel); }
+
+.band {
+  padding: var(--band) var(--pad);
+  border-top: 1px solid var(--rule);
+}
+.band--tight { padding-block: clamp(2rem, 4vw, 3.5rem); }
+.band--flush { padding-block-start: clamp(2rem, 4vw, 3.5rem); }
+/* For a band immediately followed by another record band — keeps the two
+   sections from drifting apart into one accidental-looking void. */
+.band--close { padding-block-end: clamp(2rem, 4vw, 3.5rem); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-12 { grid-column: span 12; }
+
+/* Section marker — rule + label, echoing the résumé */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
+  color: var(--line);
+  /* The h2/h3 inside take `font: inherit`, so without this a section heading
+     renders at body size and reads as a caption rather than a heading. */
+  font-size: var(--t-h3);
+}
+.sec-head::before {
+  content: "";
+  width: 2.25rem;
+  height: 2px;
+  background: var(--pink);
+  flex: none;
+}
+.sec-head h2, .sec-head h3 { font: inherit; }
+
+/* --------------------------------------------------------------- 5. Header */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  padding: 1rem var(--pad);
+  background: var(--bar);
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.wordmark {
+  font-size: var(--t-small);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--line);
+}
+.wordmark span { color: var(--pink); }
+
+/* ------------------------------------------------------------------ 6. Hero */
+
+.hero { padding: clamp(3rem, 8vw, 8rem) var(--pad) clamp(2.5rem, 5vw, 5rem); }
+
+/* .hero__pre and .portrait used to live here. Both were index-only, so they
+   are now expressed as utilities in index.html — the first page converted.
+   The rest of this file is the shared system all five pages still use. */
+
+/* Call-to-action band — the deepest surface */
+.cta {
+  background: var(--ink);
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--pad);
+  border-top: 1px solid var(--rule-strong);
+}
+.cta .lede { max-width: 28ch; color: var(--line); }
+.cta .mono { color: var(--dim); }
+.cta b { color: var(--amber); font-weight: 500; }
+.cta__arrow {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--pink);
+}
+
+/* -------------------------------------------------------------- 7. Records */
+
+/* Shared row: mono meta | title | body — the editorial spine of the site */
+.record {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.record:first-of-type { border-top: 1px solid var(--rule-strong); }
+.record:last-of-type { border-bottom: 1px solid var(--rule); }
+
+.record__meta { color: var(--dim); }
+.record__num { color: var(--violet); }
+.record__title {
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--line);
+}
+.record__org {
+  color: var(--cyan);
+  font-size: var(--t-small);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.bullets { display: grid; gap: 0.7rem; font-size: var(--t-small); }
+.bullets li { display: grid; grid-template-columns: 1.25rem 1fr; }
+.bullets li::before { content: "\2014"; color: var(--rust); }
+
+/* External link cue */
+.golink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border-bottom: 1px solid transparent;
+}
+.golink:hover { color: var(--mint); border-bottom-color: var(--mint); }
+
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tags li {
+  border: 1px solid var(--rule);
+  background: var(--raised);
+  color: var(--dim);
+  padding: 0.3rem 0.55rem;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.tags--key li { border-color: var(--rule-strong); color: var(--rust); }
+
+.tag-note {
+  display: inline-block;
+  border: 1px solid var(--rule-strong);
+  color: var(--mint);
+  padding: 0.25rem 0.5rem;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Project thumbnail */
+.thumb { display: block; border: 1px solid var(--rule-strong); overflow: hidden; }
+.thumb img {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  object-position: 50% 0;
+  filter: saturate(0.75) brightness(0.85);
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+a.thumb:hover img,
+a.thumb:focus-visible img { filter: saturate(1) brightness(1); transform: scale(1.03); }
+
+/* --------------------------------------------------------------- 8. Contact */
+
+.mailto {
+  display: inline-block;
+  font-size: clamp(1.5rem, 0.6rem + 4.4vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  padding-bottom: 0.2em; /* clears descenders so the rule sits under the word */
+  word-break: break-word;
+  color: var(--line);
+  box-shadow: inset 0 -0.06em 0 0 var(--mint);
+  transition: box-shadow 0.2s ease, color 0.2s ease;
+}
+.mailto:hover { color: var(--mint); box-shadow: inset 0 -0.5em 0 0 rgba(73, 233, 166, 0.12); }
+
+/* --------------------------------------------------------------- 9. Footer */
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  padding: 1.25rem var(--pad);
+  background: var(--bar);
+  border-top: 1px solid var(--rule-strong);
+  color: var(--dim);
+}
+.colophon b { color: var(--line); font-weight: 500; }
+
+/* ------------------------------------------------------------ 10. Responsive */
+
+@media (max-width: 900px) {
+  .grid > * { grid-column: 1 / -1; }
+  .cta .lede { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

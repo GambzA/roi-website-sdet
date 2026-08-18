@@ -19,6 +19,5 @@ content/runs.js
 
 # NOT ignored, deliberately — these are generated but the deployed site needs
 # them, since a static host runs no runner to produce them:
-#   content/runs.js            recorded runs the page replays
+#   content/runs.seed.js       published snapshot the deployed site replays
 #   assets/img/fisheye-map.png baked displacement map for the barrel filter
-#   website/dist/styles.css    compiled Tailwind (see website/CLAUDE.md)

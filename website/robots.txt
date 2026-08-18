@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-# Build sources and dependencies are published because staticPublishPath is the
-# repo root; there is nothing to index in them.
-Disallow: /src/
-Disallow: /node_modules/
-
-Sitemap: https://roigamba.dev/sitemap.xml

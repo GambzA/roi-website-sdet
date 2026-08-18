@@ -164,6 +164,14 @@ createApp({
                 : 'never';
     },
 
+    /* The page the selected suite drives, read from its own page.goto(). Falls
+       back to the site's entry point when a spec navigates somewhere the runner
+       could not parse, so the panel is never blank. */
+    embedUrl() {
+      const s = this.suites.find(x => x.key === this.suiteKey);
+      return (s && s.url) || 'website/index.html';
+    },
+
     specLines() { return (this.spec && this.spec.lines) || []; },
 
     specTokens() { return highlightSpec(this.specLines); },
