@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scheme-dark bg-ink">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,35 +8,41 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2303171a'/%3E%3Crect x='7' y='7' width='18' height='18' fill='%2349e9a6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="dist/styles.css">
 </head>
-<body data-page="work">
+<body class="overflow-x-hidden bg-ink font-sans text-body leading-[1.5] text-fg antialiased [font-synthesis-weight:none] selection:bg-raised selection:text-line"
+      data-page="work">
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="absolute top-0 -left-[999px] z-50 bg-raised px-4 py-3 font-mono text-micro leading-none font-medium tracking-[0.12em] text-line focus:left-0"
+   href="#main">Skip to content</a>
 
 <!-- ============================================================ MASTHEAD -->
-<header class="masthead">
-  <a class="wordmark" href="index.html">Roi Mark Gamba <span>·</span> SDET</a>
+<header class="flex flex-wrap items-baseline gap-x-8 gap-y-2 border-b border-rule-strong bg-bar px-pad py-4">
+  <a class="text-small font-bold uppercase tracking-[0.16em] text-line" href="index.html">Roi Mark Gamba <span class="text-pink">·</span> SDET</a>
 </header>
 
-<main id="main">
+<main id="main" class="bg-panel">
 
   <!-- ============================================================== HERO -->
-  <section class="hero" data-testid="hero">
-    <h1 class="display display--sm" data-testid="headline">
+  <section class="px-pad pt-[clamp(3rem,8vw,8rem)] pb-[clamp(2.5rem,5vw,5rem)]" data-testid="hero">
+    <h1 class="max-w-[20ch] text-title leading-[0.98] font-bold tracking-[-0.03em] text-balance text-line"
+        data-testid="headline">
       I’ve worked for a lot of companies now, but my journey to SDET wasn’t easy.
     </h1>
   </section>
 
   <!-- ======================================================== EXPERIENCE -->
-  <section class="band band--flush band--close" data-testid="experience">
-    <div class="sec-head"><h2 class="mono">Experience</h2></div>
+  <section class="border-t border-rule px-pad pt-[clamp(2rem,4vw,3.5rem)] pb-[clamp(2rem,4vw,3.5rem)]" data-testid="experience">
+    <div class="mb-[clamp(1.5rem,3vw,2.75rem)] flex items-center gap-3 text-h3 text-line before:h-[2px] before:w-9 before:flex-none before:bg-pink before:content-['']">
+      <h2 class="uppercase tracking-[0.14em]">Experience</h2>
+    </div>
 
-    <article class="record grid" data-testid="job">
-      <p class="record__meta mono col-2">May 2025 — Present</p>
-      <div class="col-4">
-        <h3 class="record__title">Software Development Engineer in Test</h3>
-        <p class="record__org">Comrise (deployment to Willis Towers Watson)</p>
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="job">
+      <p class="col-span-12 wide:col-span-2 font-mono text-micro tracking-[0.14em] text-dim uppercase">May 2025 — Present</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Software Development Engineer in Test</h3>
+        <p class="mt-[0.2rem] text-small font-medium text-cyan">Comrise (deployment to Willis Towers Watson)</p>
       </div>
-      <ul class="bullets col-6">
+      <ul class="col-span-12 wide:col-span-6 grid gap-[0.7rem] text-small [&>li]:grid [&>li]:grid-cols-[1.25rem_1fr] [&>li]:before:text-rust [&>li]:before:content-['—']">
         <li>Designed and maintained End-to-End and Integration test suites using Playwright (C#) and TypeScript, increasing automated test coverage and significantly reducing regression testing time.</li>
         <li>Implemented visual regression testing with Applitools, enabling early detection of UI inconsistencies and preventing visual defects from reaching production.</li>
         <li>Managed CI/CD pipelines in Azure DevOps, improving build stability and reducing pipeline failures through proactive monitoring and repository optimization.</li>
@@ -45,13 +51,14 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="job">
-      <p class="record__meta mono col-2">June 2024 — May 2025</p>
-      <div class="col-4">
-        <h3 class="record__title">Software Automation Engineer II</h3>
-        <p class="record__org">TrustArc, Inc.</p>
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="job">
+      <p class="col-span-12 wide:col-span-2 font-mono text-micro tracking-[0.14em] text-dim uppercase">June 2024 — May 2025</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Software Automation Engineer II</h3>
+        <p class="mt-[0.2rem] text-small font-medium text-cyan">TrustArc, Inc.</p>
       </div>
-      <ul class="bullets col-6">
+      <ul class="col-span-12 wide:col-span-6 grid gap-[0.7rem] text-small [&>li]:grid [&>li]:grid-cols-[1.25rem_1fr] [&>li]:before:text-rust [&>li]:before:content-['—']">
         <li>Developed and maintained automated regression test suites using Java (Selenium) and Playwright with Cucumber BDD, increasing test coverage and improving the reliability of critical user flows.</li>
         <li>Designed and executed performance and load tests using JMeter, identifying system bottlenecks and ensuring stability and scalability under peak conditions.</li>
         <li>Integrated automated test suites into CI/CD pipelines via Jenkins and AWS CodePipeline, improving release efficiency by 25% and accelerating feedback cycles.</li>
@@ -59,26 +66,28 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="job">
-      <p class="record__meta mono col-2">May 2022 — May 2024</p>
-      <div class="col-4">
-        <h3 class="record__title">Software Developer II · DevOps · QA Automation Engineer</h3>
-        <p class="record__org">Bizmates Philippines, Inc.</p>
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="job">
+      <p class="col-span-12 wide:col-span-2 font-mono text-micro tracking-[0.14em] text-dim uppercase">May 2022 — May 2024</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Software Developer II · DevOps · QA Automation Engineer</h3>
+        <p class="mt-[0.2rem] text-small font-medium text-cyan">Bizmates Philippines, Inc.</p>
       </div>
-      <ul class="bullets col-6">
+      <ul class="col-span-12 wide:col-span-6 grid gap-[0.7rem] text-small [&>li]:grid [&>li]:grid-cols-[1.25rem_1fr] [&>li]:before:text-rust [&>li]:before:content-['—']">
         <li>Developed an automation testing framework using Java Selenium, TestNG, and Jenkins, decreasing regression testing time by 30%.</li>
         <li>Spearheaded the development of the Spark Hire integration in the Applicant Portal, reducing interview manpower requirements by 20%.</li>
         <li>Upgraded the Finance Management System from Laravel 5 to Laravel 10 and from VueJS 2 to VueJS 3, boosting performance and security.</li>
       </ul>
     </article>
 
-    <article class="record grid" data-testid="job">
-      <p class="record__meta mono col-2">August 2017 — May 2022</p>
-      <div class="col-4">
-        <h3 class="record__title">Software Engineer · Lead Engineer</h3>
-        <p class="record__org">Atlantis System’s Technologies Filipinas, Inc.</p>
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="job">
+      <p class="col-span-12 wide:col-span-2 font-mono text-micro tracking-[0.14em] text-dim uppercase">August 2017 — May 2022</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Software Engineer · Lead Engineer</h3>
+        <p class="mt-[0.2rem] text-small font-medium text-cyan">Atlantis System’s Technologies Filipinas, Inc.</p>
       </div>
-      <ul class="bullets col-6">
+      <ul class="col-span-12 wide:col-span-6 grid gap-[0.7rem] text-small [&>li]:grid [&>li]:grid-cols-[1.25rem_1fr] [&>li]:before:text-rust [&>li]:before:content-['—']">
         <li>Led a team to upgrade the Online Reservation System from version 4.19 to 4.35, improving system performance and user experience.</li>
         <li>Migrated from a dedicated server to Digital Ocean Cloud, increasing scalability and operational efficiency, and integrated Xendit for enhanced payment capabilities and reduced transaction fees.</li>
       </ul>
@@ -86,27 +95,29 @@
   </section>
 
   <!-- ========================================================= EDUCATION -->
-  <section class="band" data-testid="education">
-    <div class="sec-head"><h2 class="mono">Education</h2></div>
-    <article class="record grid">
-      <p class="record__meta mono col-2">Graduated 2018</p>
-      <div class="col-4">
-        <h3 class="record__title">Bachelor of Science in Information Technology</h3>
-        <p class="record__org">Far Eastern University — Makati</p>
+  <section class="border-t border-rule px-pad py-band" data-testid="education">
+    <div class="mb-[clamp(1.5rem,3vw,2.75rem)] flex items-center gap-3 text-h3 text-line before:h-[2px] before:w-9 before:flex-none before:bg-pink before:content-['']">
+      <h2 class="uppercase tracking-[0.14em]">Education</h2>
+    </div>
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b">
+      <p class="col-span-12 wide:col-span-2 font-mono text-micro tracking-[0.14em] text-dim uppercase">Graduated 2018</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Bachelor of Science in Information Technology</h3>
+        <p class="mt-[0.2rem] text-small font-medium text-cyan">Far Eastern University — Makati</p>
       </div>
-      <ul class="bullets col-6">
+      <ul class="col-span-12 wide:col-span-6 grid gap-[0.7rem] text-small [&>li]:grid [&>li]:grid-cols-[1.25rem_1fr] [&>li]:before:text-rust [&>li]:before:content-['—']">
         <li>Started as a developer, moved through DevOps and QA, and landed where breaking things on purpose became the job.</li>
       </ul>
     </article>
   </section>
 
   <!-- =============================================================== CTA -->
-  <section class="cta" data-testid="cta">
-    <div class="grid">
-      <p class="cta__arrow col-1" aria-hidden="true">←</p>
-      <div class="col-9">
-        <p class="mono" style="margin-bottom: 0.9rem;">Next</p>
-        <p class="lede">Run <b>skills.spec.ts</b> to see what I picked up along the way.</p>
+  <section class="border-t border-rule-strong bg-ink px-pad py-[clamp(2.5rem,5vw,4.5rem)]" data-testid="cta">
+    <div class="grid grid-cols-12 gap-gap">
+      <p class="col-span-12 wide:col-span-1 text-[clamp(2rem,5vw,4rem)] leading-none text-pink" aria-hidden="true">←</p>
+      <div class="col-span-12 wide:col-span-9">
+        <p class="mb-[0.9rem] font-mono text-micro tracking-[0.14em] text-dim uppercase">Next</p>
+        <p class="text-lede leading-[1.12] font-medium tracking-[-0.02em] text-pretty text-line wide:max-w-[28ch]">Run <b class="font-medium text-amber">skills.spec.ts</b> to see what I picked up along the way.</p>
       </div>
     </div>
   </section>
@@ -114,8 +125,8 @@
 </main>
 
 <!-- ============================================================ COLOPHON -->
-<footer class="colophon mono">
-  <span>© 2026 <b>Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
+<footer class="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-rule-strong bg-bar px-pad py-5 font-mono text-micro tracking-[0.14em] text-dim uppercase">
+  <span>© 2026 <b class="font-medium text-line">Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
 </footer>
 
 </body>

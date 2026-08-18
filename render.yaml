@@ -50,9 +50,10 @@ services:
   #
   # staticPublishPath stays "." because it resolves relative to rootDir.
   #
-  # No buildCommand: the site was rewritten as plain HTML and CSS
-  # (assets/css/style.css, authored directly), so there is no package.json and
-  # nothing to compile. The previous Tailwind build step would fail here.
+  # No buildCommand: the pages are styled with Tailwind utilities, but the
+  # compiled dist/styles.css is committed, so there is nothing to compile here.
+  # Rebuild it locally (`npm run build` in website/) and commit the result —
+  # an uncompiled change would otherwise never reach this deploy.
   - type: web
     name: roi-gamba-portfolio
     runtime: static

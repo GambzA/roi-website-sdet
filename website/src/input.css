@@ -3,39 +3,46 @@
 
    Output goes to dist/styles.css and is COMMITTED — Render serves this site
    statically with no build step, so an uncompiled change never reaches the
-   deployed site. Rebuild and commit alongside any edit to this file, to
-   assets/css/style.css, or to the classes used in the pages.
+   deployed site. Rebuild and commit alongside any edit to this file or to the
+   classes used in the pages.
 
-   Tailwind v4 is CSS-first: the theme below replaces what used to be
-   tailwind.config.js, and every token here becomes both a utility and a CSS
-   variable, which is what lets assets/css/style.css alias them rather than
-   keeping a second copy of every value.
+   This is the only stylesheet. Every visual decision lives in the markup as a
+   utility; what remains here is the theme those utilities are generated from,
+   plus the two global behaviours that have no element to hang off.
    ========================================================================== */
 
-@import "tailwindcss";
-@import "../assets/css/style.css";
+/* source(none) turns off Tailwind's automatic file detection, which would
+   otherwise scan the whole project — including this README's palette table —
+   and emit utilities no page actually uses. The pages are the only source. */
+@import "tailwindcss" source(none);
 
 @source "../*.html";
 
 @theme {
   /* Surfaces — deepest to raised */
-  --color-ink: #03171a;
-  --color-panel: #052529;
-  --color-bar: #041d20;
-  --color-raised: #073940;
+  --color-ink: #03171a;      /* outside the tube — page ground, CTA bands */
+  --color-panel: #052529;    /* editor.background — the reading surface */
+  --color-bar: #041d20;      /* sideBar.background — masthead, colophon */
+  --color-raised: #073940;   /* focusBorder / raised surfaces — tags */
 
   /* Text */
-  --color-fg: #b2cacd;
-  --color-dim: #7ba7ae;
-  --color-line: #8fc7cc;
+  --color-fg: #b2cacd;       /* editor.foreground — body text */
+  --color-dim: #7ba7ae;      /* comments — metadata, captions */
+  --color-line: #8fc7cc;     /* panel border — visible frames, headlines */
 
   /* Syntax accents, from the Noctis palette the whole project shares */
-  --color-mint: #49e9a6;
-  --color-pink: #df769b;
-  --color-cyan: #16a3b6;
-  --color-amber: #e4b781;
-  --color-violet: #9d8cff;
-  --color-rust: #d67e5c;
+  --color-mint: #49e9a6;     /* strings   → affirmations, email underline */
+  --color-pink: #df769b;     /* keywords  → section markers, arrows */
+  --color-cyan: #16a3b6;     /* functions → organisations, external links */
+  --color-amber: #e4b781;    /* variables → identifiers */
+  --color-violet: #9d8cff;   /* numbers   → indices */
+  --color-rust: #d67e5c;     /* types     → stack tags, bullet rules */
+
+  /* Hairlines, derived from --color-line so record separators stay quiet
+     while frames stay visible. Registered as colours rather than loose
+     variables so `border-rule` and `border-rule-strong` are real utilities. */
+  --color-rule: color-mix(in srgb, var(--color-line) 18%, transparent);
+  --color-rule-strong: color-mix(in srgb, var(--color-line) 40%, transparent);
 
   --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo,
@@ -54,15 +61,42 @@
      clamp stays readable in the markup as `text-pre`. */
   --text-pre: clamp(1.24rem, 1.134rem + 0.7vw, 1.8rem);
 
+  /* Two headline sizes that deliberately sit outside the ramp below: the
+     long-sentence headline on interior pages, and the email address. */
+  --text-title: clamp(1.75rem, 0.85rem + 3.9vw, 5.5rem);
+  --text-mail: clamp(1.5rem, 0.6rem + 4.4vw, 5rem);
+
   /* Rhythm — `p-pad`, `gap-gap`, `py-band` */
   --spacing-pad: clamp(1.25rem, 4vw, 4.5rem);
   --spacing-gap: clamp(1.25rem, 2.2vw, 2.5rem);
   --spacing-band: clamp(3rem, 7vw, 7.5rem);
+
+  /* The one breakpoint the layout actually turns on: below it every record
+     collapses to a single column. `wide:col-span-*` restores the 12-column
+     reading order above it. */
+  --breakpoint-wide: 900px;
+}
+
+@layer base {
+  /* Global behaviours with no element of their own to carry a utility. */
+  :focus-visible {
+    outline: 2px solid var(--color-raised);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* Reading sizes keep climbing past a laptop; the display step deliberately
-   does not. Overriding the theme variables means every utility and every
-   component that reads them follows automatically, with no second scale. */
+   does not. Overriding the theme variables means every utility that reads them
+   follows automatically, with no second scale. */
 @media (min-width: 1440px) {
   :root {
     --text-micro: clamp(0.894rem, 0.436rem + 0.509vw, 1.4rem);

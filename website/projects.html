@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scheme-dark bg-ink">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,197 +8,230 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2303171a'/%3E%3Crect x='7' y='7' width='18' height='18' fill='%2349e9a6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="dist/styles.css">
 </head>
-<body data-page="projects">
+<body class="overflow-x-hidden bg-ink font-sans text-body leading-[1.5] text-fg antialiased [font-synthesis-weight:none] selection:bg-raised selection:text-line"
+      data-page="projects">
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="absolute top-0 -left-[999px] z-50 bg-raised px-4 py-3 font-mono text-micro leading-none font-medium tracking-[0.12em] text-line focus:left-0"
+   href="#main">Skip to content</a>
 
 <!-- ============================================================ MASTHEAD -->
-<header class="masthead">
-  <a class="wordmark" href="index.html">Roi Mark Gamba <span>·</span> SDET</a>
+<header class="flex flex-wrap items-baseline gap-x-8 gap-y-2 border-b border-rule-strong bg-bar px-pad py-4">
+  <a class="text-small font-bold uppercase tracking-[0.16em] text-line" href="index.html">Roi Mark Gamba <span class="text-pink">·</span> SDET</a>
 </header>
 
-<main id="main">
+<main id="main" class="bg-panel">
 
   <!-- ============================================================== HERO -->
-  <section class="hero" data-testid="hero">
-    <h1 class="display display--sm" data-testid="headline">
+  <section class="px-pad pt-[clamp(3rem,8vw,8rem)] pb-[clamp(2.5rem,5vw,5rem)]" data-testid="hero">
+    <h1 class="max-w-[20ch] text-title leading-[0.98] font-bold tracking-[-0.03em] text-balance text-line"
+        data-testid="headline">
       And projects that I’m really proud of, including this portfolio!
     </h1>
   </section>
 
   <!-- ========================================================== PROJECTS -->
-  <section class="band band--flush" data-testid="projects">
-    <div class="sec-head"><h2 class="mono">Selected work</h2></div>
+  <section class="border-t border-rule px-pad pt-[clamp(2rem,4vw,3.5rem)] pb-band" data-testid="projects">
+    <div class="mb-[clamp(1.5rem,3vw,2.75rem)] flex items-center gap-3 text-h3 text-line before:h-[2px] before:w-9 before:flex-none before:bg-pink before:content-['']">
+      <h2 class="uppercase tracking-[0.14em]">Selected work</h2>
+    </div>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">01</p>
-      <a class="thumb col-3" href="https://atlantis.asia/services/hotel-booking-system/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-ors.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">01</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://atlantis.asia/services/hotel-booking-system/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-ors.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">Atlantis Online Reservation System</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">Hotel booking and reservation platform. Led the team that took it from version 4.19 to 4.35, moved it off a dedicated server onto Digital Ocean, and integrated Xendit for payments.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Atlantis Online Reservation System</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">Hotel booking and reservation platform. Led the team that took it from version 4.19 to 4.35, moved it off a dedicated server onto Digital Ocean, and integrated Xendit for payments.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Atlantis System’s Technologies Filipinas, Corp.</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Atlantis System’s Technologies Filipinas, Corp.</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>PHP</li>
           <li>Digital Ocean</li>
           <li>Xendit</li>
           <li>Team lead</li>
         </ul>
-        <a class="golink" href="https://atlantis.asia/services/hotel-booking-system/" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://atlantis.asia/services/hotel-booking-system/" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">02</p>
-      <a class="thumb col-3" href="https://trustarc.com/products/consent-consumer-rights/cookie-consent-manager/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-trustarc.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">02</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://trustarc.com/products/consent-consumer-rights/cookie-consent-manager/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-trustarc.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">Cookie Consent Manager</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">Consent and cookie management product. Built and maintained the automated regression coverage and the JMeter performance suite behind its releases.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Cookie Consent Manager</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">Consent and cookie management product. Built and maintained the automated regression coverage and the JMeter performance suite behind its releases.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">TrustArc, Inc.</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">TrustArc, Inc.</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>Selenium (Java)</li>
           <li>Playwright</li>
           <li>Cucumber BDD</li>
           <li>JMeter</li>
         </ul>
-        <a class="golink" href="https://trustarc.com/products/consent-consumer-rights/cookie-consent-manager/" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://trustarc.com/products/consent-consumer-rights/cookie-consent-manager/" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">03</p>
-      <a class="thumb col-3" href="https://www.wtwco.com/en-ph/insights/campaigns/salary-survey-participation" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-wtw.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">03</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://www.wtwco.com/en-ph/insights/campaigns/salary-survey-participation" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-wtw.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">AXIS — Extended Job Catalog</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">Salary survey and job catalog platform. End-to-end and integration coverage in Playwright, Applitools visual baselines, and Azure DevOps pipelines kept green through proactive monitoring.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">AXIS — Extended Job Catalog</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">Salary survey and job catalog platform. End-to-end and integration coverage in Playwright, Applitools visual baselines, and Azure DevOps pipelines kept green through proactive monitoring.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Willis Towers Watson</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Willis Towers Watson</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>Playwright (C#)</li>
           <li>TypeScript</li>
           <li>Applitools</li>
           <li>Azure DevOps</li>
         </ul>
-        <a class="golink" href="https://www.wtwco.com/en-ph/insights/campaigns/salary-survey-participation" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://www.wtwco.com/en-ph/insights/campaigns/salary-survey-participation" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">04</p>
-      <a class="thumb col-3" href="https://twoseasonsresorts.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-twoseasons.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">04</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://twoseasonsresorts.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-twoseasons.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">Two Seasons Resorts Website</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">Full website revamp for the resort group, built on WordPress with Astra Pro.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Two Seasons Resorts Website</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">Full website revamp for the resort group, built on WordPress with Astra Pro.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Freelance</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Freelance</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>WordPress</li>
           <li>PHP</li>
           <li>Astra Pro</li>
         </ul>
-        <a class="golink" href="https://twoseasonsresorts.com/" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://twoseasonsresorts.com/" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">05</p>
-      <a class="thumb col-3" href="https://itmiro.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-itmiro.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">05</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://itmiro.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-itmiro.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">Itmiro Website</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">A new website for the Itmiro restaurant, built with WordPress, PHP and Tailwind CSS.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Itmiro Website</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">A new website for the Itmiro restaurant, built with WordPress, PHP and Tailwind CSS.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Freelance</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Freelance</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>WordPress</li>
           <li>PHP</li>
           <li>Tailwind</li>
         </ul>
-        <a class="golink" href="https://itmiro.com/" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://itmiro.com/" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">06</p>
-      <a class="thumb col-3" href="https://scrub.ph/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-        <img src="assets/img/proj-scrub.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">06</p>
+      <a class="group col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong"
+         href="https://scrub.ph/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75] [transition:filter_0.4s_ease,scale_0.6s_ease] group-hover:scale-[1.03] group-hover:brightness-100 group-hover:saturate-100 group-focus-visible:scale-[1.03] group-focus-visible:brightness-100 group-focus-visible:saturate-100"
+             src="assets/img/proj-scrub.jpg" alt="">
       </a>
-      <div class="col-4">
-        <h3 class="record__title">Scrub PH</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">Scrub.ph helps you book verified cleaning companies and freelance cleaners, with organized schedules, secure payments and proper booking records.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Scrub PH</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">Scrub.ph helps you book verified cleaning companies and freelance cleaners, with organized schedules, secure payments and proper booking records.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Investor</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Investor</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>Marketplace</li>
           <li>Bookings</li>
           <li>Payments</li>
         </ul>
-        <a class="golink" href="https://scrub.ph/" target="_blank" rel="noopener">View project ↗</a>
+        <a class="mt-[0.9rem] inline-flex items-baseline gap-[0.4rem] border-b border-transparent font-mono text-micro tracking-[0.12em] text-cyan uppercase hover:border-mint hover:text-mint"
+           href="https://scrub.ph/" target="_blank" rel="noopener">View project ↗</a>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">07</p>
-      <div class="thumb col-3">
-        <img src="assets/img/proj-booking-engine.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">07</p>
+      <div class="col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75]"
+             src="assets/img/proj-booking-engine.jpg" alt="">
       </div>
-      <div class="col-4">
-        <h3 class="record__title">Booking Engine</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">An upcoming SaaS booking engine for the growing hospitality industry in Bicol.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">Booking Engine</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">An upcoming SaaS booking engine for the growing hospitality industry in Bicol.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Agentic build</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Agentic build</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>SaaS</li>
           <li>Hospitality</li>
         </ul>
-        <p style="margin-top:0.9rem;"><span class="tag-note">In development</span></p>
+        <p class="mt-[0.9rem]"><span class="inline-block border border-rule-strong px-[0.5rem] py-[0.25rem] font-mono text-micro tracking-[0.1em] text-mint uppercase">In development</span></p>
       </div>
     </article>
 
-    <article class="record grid" data-testid="project">
-      <p class="record__meta record__num mono col-1">08</p>
-      <div class="thumb col-3">
-        <img src="assets/img/proj-proptrack.jpg" alt="">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="project">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">08</p>
+      <div class="col-span-12 wide:col-span-3 block overflow-hidden border border-rule-strong">
+        <img class="aspect-[5/3] w-full object-cover object-[50%_0] brightness-[0.85] saturate-[0.75]"
+             src="assets/img/proj-proptrack.jpg" alt="">
       </div>
-      <div class="col-4">
-        <h3 class="record__title">PropTrack</h3>
-        <p class="body-lg muted" style="margin-top:0.6rem;">A property management tool for real estate professionals.</p>
+      <div class="col-span-12 wide:col-span-4">
+        <h3 class="text-h3 font-bold tracking-[-0.02em] text-line">PropTrack</h3>
+        <p class="mt-[0.6rem] text-body leading-[1.5] text-pretty text-dim">A property management tool for real estate professionals.</p>
       </div>
-      <div class="col-4">
-        <p class="record__org" style="margin:0 0 0.8rem;">Agentic build</p>
-        <ul class="tags">
+      <div class="col-span-12 wide:col-span-4">
+        <p class="mb-[0.8rem] text-small font-medium text-cyan">Agentic build</p>
+        <ul class="flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
           <li>Property management</li>
           <li>Real estate</li>
         </ul>
-        <p style="margin-top:0.9rem;"><span class="tag-note">In development</span></p>
+        <p class="mt-[0.9rem]"><span class="inline-block border border-rule-strong px-[0.5rem] py-[0.25rem] font-mono text-micro tracking-[0.1em] text-mint uppercase">In development</span></p>
       </div>
     </article>
   </section>
 
   <!-- =============================================================== CTA -->
-  <section class="cta" data-testid="cta">
-    <div class="grid">
-      <p class="cta__arrow col-1" aria-hidden="true">←</p>
-      <div class="col-9">
-        <p class="mono" style="margin-bottom: 0.9rem;">Last spec</p>
-        <p class="lede">Run <b>contact.spec.ts</b> to close out the suite.</p>
+  <section class="border-t border-rule-strong bg-ink px-pad py-[clamp(2.5rem,5vw,4.5rem)]" data-testid="cta">
+    <div class="grid grid-cols-12 gap-gap">
+      <p class="col-span-12 wide:col-span-1 text-[clamp(2rem,5vw,4rem)] leading-none text-pink" aria-hidden="true">←</p>
+      <div class="col-span-12 wide:col-span-9">
+        <p class="mb-[0.9rem] font-mono text-micro tracking-[0.14em] text-dim uppercase">Last spec</p>
+        <p class="text-lede leading-[1.12] font-medium tracking-[-0.02em] text-pretty text-line wide:max-w-[28ch]">Run <b class="font-medium text-amber">contact.spec.ts</b> to close out the suite.</p>
       </div>
     </div>
   </section>
@@ -206,8 +239,8 @@
 </main>
 
 <!-- ============================================================ COLOPHON -->
-<footer class="colophon mono">
-  <span>© 2026 <b>Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
+<footer class="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-rule-strong bg-bar px-pad py-5 font-mono text-micro tracking-[0.14em] text-dim uppercase">
+  <span>© 2026 <b class="font-medium text-line">Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
 </footer>
 
 </body>

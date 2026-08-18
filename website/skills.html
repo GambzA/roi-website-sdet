@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scheme-dark bg-ink">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,32 +8,38 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2303171a'/%3E%3Crect x='7' y='7' width='18' height='18' fill='%2349e9a6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="dist/styles.css">
 </head>
-<body data-page="skills">
+<body class="overflow-x-hidden bg-ink font-sans text-body leading-[1.5] text-fg antialiased [font-synthesis-weight:none] selection:bg-raised selection:text-line"
+      data-page="skills">
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="absolute top-0 -left-[999px] z-50 bg-raised px-4 py-3 font-mono text-micro leading-none font-medium tracking-[0.12em] text-line focus:left-0"
+   href="#main">Skip to content</a>
 
 <!-- ============================================================ MASTHEAD -->
-<header class="masthead">
-  <a class="wordmark" href="index.html">Roi Mark Gamba <span>·</span> SDET</a>
+<header class="flex flex-wrap items-baseline gap-x-8 gap-y-2 border-b border-rule-strong bg-bar px-pad py-4">
+  <a class="text-small font-bold uppercase tracking-[0.16em] text-line" href="index.html">Roi Mark Gamba <span class="text-pink">·</span> SDET</a>
 </header>
 
-<main id="main">
+<main id="main" class="bg-panel">
 
   <!-- ============================================================== HERO -->
-  <section class="hero" data-testid="hero">
-    <h1 class="display display--sm" data-testid="headline">
+  <section class="px-pad pt-[clamp(3rem,8vw,8rem)] pb-[clamp(2.5rem,5vw,5rem)]" data-testid="hero">
+    <h1 class="max-w-[20ch] text-title leading-[0.98] font-bold tracking-[-0.03em] text-balance text-line"
+        data-testid="headline">
       I’ve built a lot of skills along the way.
     </h1>
   </section>
 
   <!-- ============================================================ SKILLS -->
-  <section class="band band--flush" data-testid="skills">
-    <div class="sec-head"><h2 class="mono">Skills</h2></div>
+  <section class="border-t border-rule px-pad pt-[clamp(2rem,4vw,3.5rem)] pb-band" data-testid="skills">
+    <div class="mb-[clamp(1.5rem,3vw,2.75rem)] flex items-center gap-3 text-h3 text-line before:h-[2px] before:w-9 before:flex-none before:bg-pink before:content-['']">
+      <h2 class="uppercase tracking-[0.14em]">Skills</h2>
+    </div>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">01</p>
-      <h3 class="record__title col-3">Testing</h3>
-      <ul class="tags tags--key col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">01</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">Testing</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule-strong [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-rust">
         <li>E2E / Regression Testing</li>
         <li>Load Testing</li>
         <li>Smoke Testing</li>
@@ -44,10 +50,11 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">02</p>
-      <h3 class="record__title col-3">Test Automation</h3>
-      <ul class="tags tags--key col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">02</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">Test Automation</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule-strong [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-rust">
         <li>Playwright (C#)</li>
         <li>Playwright (TypeScript)</li>
         <li>Selenium (Java)</li>
@@ -58,10 +65,11 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">03</p>
-      <h3 class="record__title col-3">Languages</h3>
-      <ul class="tags col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">03</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">Languages</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
         <li>Java</li>
         <li>Python</li>
         <li>C#</li>
@@ -74,10 +82,11 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">04</p>
-      <h3 class="record__title col-3">DevOps &amp; Cloud</h3>
-      <ul class="tags col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">04</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">DevOps &amp; Cloud</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
         <li>Azure DevOps</li>
         <li>Jenkins</li>
         <li>AWS CodePipeline</li>
@@ -89,10 +98,11 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">05</p>
-      <h3 class="record__title col-3">Frameworks &amp; Data</h3>
-      <ul class="tags col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">05</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">Frameworks &amp; Data</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-dim">
         <li>Node.js</li>
         <li>Vue.js</li>
         <li>Laravel</li>
@@ -106,10 +116,11 @@
       </ul>
     </article>
 
-    <article class="record grid" data-testid="skill-group">
-      <p class="record__meta record__num mono col-1">06</p>
-      <h3 class="record__title col-3">AI Engineering</h3>
-      <ul class="tags tags--key col-8">
+    <article class="grid grid-cols-12 gap-gap border-t border-rule py-[clamp(1.75rem,3.2vw,2.75rem)] first-of-type:border-t-rule-strong last-of-type:border-b"
+             data-testid="skill-group">
+      <p class="col-span-12 wide:col-span-1 font-mono text-micro tracking-[0.14em] text-violet uppercase">06</p>
+      <h3 class="col-span-12 wide:col-span-3 text-h3 font-bold tracking-[-0.02em] text-line">AI Engineering</h3>
+      <ul class="col-span-12 wide:col-span-8 flex flex-wrap gap-[0.4rem] [&>li]:border [&>li]:border-rule-strong [&>li]:bg-raised [&>li]:px-[0.55rem] [&>li]:py-[0.3rem] [&>li]:font-mono [&>li]:text-micro [&>li]:tracking-[0.04em] [&>li]:whitespace-nowrap [&>li]:text-rust">
         <li>Agentic development — GitHub Copilot</li>
         <li>Agentic development — Claude Code</li>
         <li>Spec-driven development with Spec-kit</li>
@@ -121,12 +132,12 @@
   </section>
 
   <!-- =============================================================== CTA -->
-  <section class="cta" data-testid="cta">
-    <div class="grid">
-      <p class="cta__arrow col-1" aria-hidden="true">←</p>
-      <div class="col-9">
-        <p class="mono" style="margin-bottom: 0.9rem;">Next</p>
-        <p class="lede">Run <b>projects.spec.ts</b> to see where these got used.</p>
+  <section class="border-t border-rule-strong bg-ink px-pad py-[clamp(2.5rem,5vw,4.5rem)]" data-testid="cta">
+    <div class="grid grid-cols-12 gap-gap">
+      <p class="col-span-12 wide:col-span-1 text-[clamp(2rem,5vw,4rem)] leading-none text-pink" aria-hidden="true">←</p>
+      <div class="col-span-12 wide:col-span-9">
+        <p class="mb-[0.9rem] font-mono text-micro tracking-[0.14em] text-dim uppercase">Next</p>
+        <p class="text-lede leading-[1.12] font-medium tracking-[-0.02em] text-pretty text-line wide:max-w-[28ch]">Run <b class="font-medium text-amber">projects.spec.ts</b> to see where these got used.</p>
       </div>
     </div>
   </section>
@@ -134,8 +145,8 @@
 </main>
 
 <!-- ============================================================ COLOPHON -->
-<footer class="colophon mono">
-  <span>© 2026 <b>Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
+<footer class="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-rule-strong bg-bar px-pad py-5 font-mono text-micro tracking-[0.14em] text-dim uppercase">
+  <span>© 2026 <b class="font-medium text-line">Roi Mark Gamba</b> — SDET &amp; Software Engineer</span>
 </footer>
 
 </body>
